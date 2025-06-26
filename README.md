@@ -92,24 +92,34 @@ $ ./gendata 800 3 100 | ./insert R
 
 Insert 800 tuples into the table, with ID values starting at 100.
 
+#### clean
+
+Remove `Rel.data` `Rel.info` `Rel.ovflow`. If no argument provided, remove every existing relation.
+
+
+```shell
+$ ./clean [RelName]
+```
+
 ---
 
 ### Setting Up
 
 To build the executables from the code:
 ```shell
+$ cd src
 $ make
 ```
 
-The following executables should be generated:
-- create
-- dump
-- insert
-- query
-- stats
+The following executables should be generated in `/src`:
+- `create`
+- `dump`
+- `insert`
+- `query`
+- `stats`
 
 ---
 
 ### Troubleshooting
-- Check make file
-- Check gcc version
+- Check `make` file
+- Check `gcc` version

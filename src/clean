@@ -1,0 +1,15 @@
+#!/bin/bash
+# Usage: ./clean [RelName]
+# if relname not given remove every created relation
+# else remove the given relation
+
+if [[ $# = 1 ]]; then
+    rm $1.data $1.info $1.ovflow
+    exit $?
+elif [[ $# = 0 ]]; then
+    rm *.data *.info *.ovflow
+    exit $?
+else
+    echo "Usage: ./clean [RelName]"
+    exit 1
+fi
