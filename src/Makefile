@@ -1,16 +1,29 @@
 CC=gcc
 CFLAGS=-Wall -Werror -g -std=c99
-LIBS=select.o project.o page.o reln.o tuple.o util.o chvec.o hash.o bits.o -lm
+LDLIBS = -lm
+
+OBJS=select.o project.o page.o reln.o tuple.o util.o chvec.o hash.o bits.o
 BINS=create dump insert query stats gendata
 
 all : $(BINS)
 
-create: create.o $(LIBS)
-dump: dump.o $(LIBS)
-insert: insert.o $(LIBS)
-query: query.o $(LIBS)
-stats:  stats.o $(LIBS)
-gendata: gendata.o $(LIBS)
+create: create.o $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+dump: dump.o $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+insert: insert.o $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+query: query.o $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+stats: stats.o $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+gendata: gendata.o $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
 
 create.o: create.c defs.h
 dump.o: dump.c defs.h reln.h page.h
